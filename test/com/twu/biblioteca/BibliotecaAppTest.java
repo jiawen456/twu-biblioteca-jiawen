@@ -30,6 +30,21 @@ public class BibliotecaAppTest {
     }
 
     @Test
+    public void shouldSeeListOfMenuOptions() {
+        app.displayMainMenu();
+
+        String menuOption1 = "List of books";
+        assertThat(outContent.toString(), containsString(menuOption1));
+    }
+
+    @Test
+    public void shouldSeeListOfBooksWhenOptionSelected() {
+        app.menuHandler("List of books");
+        String listOfBooksMsg = "List of Library Books";
+        assertThat(outContent.toString(), containsString(listOfBooksMsg));
+    }
+
+    @Test
     public void shouldSeeListOfAllBooks() {
         FakeBookList bookList = new FakeBookList();
         app.displayBookList(bookList);
