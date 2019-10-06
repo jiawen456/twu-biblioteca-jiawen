@@ -5,11 +5,19 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
 
+    public static boolean isRunning = true;
+
     public static void main(String[] args) {
         BibliotecaApp app = new BibliotecaApp();
         app.start();
         app.displayMainMenu();
-        app.getMenuInput();
+
+        while (isRunning) {
+            app.getMenuInput();
+            if (!isRunning) {
+                break;
+            }
+        }
     }
 
     public void start() {
@@ -20,6 +28,7 @@ public class BibliotecaApp {
     public void displayMainMenu() {
         System.out.println("Main Menu");
         System.out.println("List of books");
+        System.out.println("Quit");
     }
 
     public void getMenuInput() {
@@ -33,8 +42,11 @@ public class BibliotecaApp {
         if (input.equalsIgnoreCase("List of books")) {
             BookList bookList = new BookList();
             displayBookList(bookList);
+        } else if (input.equalsIgnoreCase("Quit")) {
+            isRunning = false;
         } else {
             System.out.println("Please select a valid option!");
+
         }
     }
 
@@ -45,6 +57,5 @@ public class BibliotecaApp {
         for (Book book : books) {
             System.out.format("%-32s%-24s%-4d%n", book.getTitle(), book.getAuthor(), book.getYearPublished());
         }
-
     }
 }

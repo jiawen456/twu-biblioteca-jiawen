@@ -1,13 +1,14 @@
 package com.twu.biblioteca;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static java.lang.String.format;
-import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 public class BibliotecaAppTest {
@@ -19,6 +20,7 @@ public class BibliotecaAppTest {
     public void setUp() {
         System.setOut(new PrintStream(outContent));
         app = new BibliotecaApp();
+        BibliotecaApp.isRunning = true;
     }
 
     @Test
@@ -65,6 +67,18 @@ public class BibliotecaAppTest {
         app.menuHandler("Invalid input");
         String invalidMsg = "Please select a valid option!";
         assertThat(outContent.toString(), containsString(invalidMsg));
+    }
+
+    @Test
+    public void shouldNotExitWhenQuitOptionNotSelected() {
+        app.menuHandler("List of books");
+        assertThat(BibliotecaApp.isRunning, is(true));
+    }
+
+    @Test
+    public void shouldExitWhenQuitOptionSelected() {
+        app.menuHandler("Quit");
+        assertThat(BibliotecaApp.isRunning, is(false));
     }
 
 }
