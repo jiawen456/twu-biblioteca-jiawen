@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -20,21 +19,17 @@ public class BibliotecaAppTest {
     public void setUp() {
         System.setOut(new PrintStream(outContent));
         app = new BibliotecaApp();
-        BibliotecaApp.isRunning = true;
+        app.initialise();
     }
 
     @Test
     public void shouldSeeWelcomeMessageOnStart() {
-        app.start();
-
         String welcomeMsg = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
         assertThat(outContent.toString(), containsString(welcomeMsg));
     }
 
     @Test
     public void shouldSeeListOfMenuOptions() {
-        app.displayMainMenu();
-
         String menuOption1 = "List of books";
         assertThat(outContent.toString(), containsString(menuOption1));
     }
@@ -48,8 +43,7 @@ public class BibliotecaAppTest {
 
     @Test
     public void shouldSeeListOfAllBooks() {
-        FakeBookList bookList = new FakeBookList();
-        app.displayBookList(bookList);
+        app.displayBookList();
 
         String outputBook1 = format("%-32s%-24s%-4d%n", "1984", "George Orwell", 1949);
         String outputBook2 = format("%-32s%-24s%-4d%n", "To Kill a Mockingbird", "Harper Lee", 1960);
@@ -72,13 +66,13 @@ public class BibliotecaAppTest {
     @Test
     public void shouldNotExitWhenQuitOptionNotSelected() {
         app.menuHandler("List of books");
-        assertThat(BibliotecaApp.isRunning, is(true));
+        assertThat(app.isRunning, is(true));
     }
 
     @Test
     public void shouldExitWhenQuitOptionSelected() {
         app.menuHandler("Quit");
-        assertThat(BibliotecaApp.isRunning, is(false));
+        assertThat(app.isRunning, is(false));
     }
 
 }
