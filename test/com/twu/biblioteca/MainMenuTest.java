@@ -65,4 +65,14 @@ public class MainMenuTest {
         String successMsg = "Thank you! Enjoy the book";
         assertThat(outContent.toString(), containsString(successMsg));
     }
+
+    @Test
+    public void shouldDisplayUnsuccessfulMessageAfterUnsuccessfulCheckout() {
+        String title = "1989";
+        InputStream in = new ByteArrayInputStream(title.getBytes());
+        System.setIn(in);
+        menu.processCheckoutBook();
+        String successMsg = "Sorry, that book is not available";
+        assertThat(outContent.toString(), containsString(successMsg));
+    }
 }
