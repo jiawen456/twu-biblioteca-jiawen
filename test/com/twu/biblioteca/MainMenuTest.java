@@ -84,5 +84,15 @@ public class MainMenuTest {
         menu.processMenuInput("List of books");
         assertThat(outContent.toString(), containsString(title));
     }
-    
+
+    @Test
+    public void shouldDisplaySuccessMessageAfterSuccessfulReturn() {
+        String title = "1984";
+        menu.bookList.checkoutBook(title);
+        InputStream in = new ByteArrayInputStream(title.getBytes());
+        System.setIn(in);
+        menu.processReturnBook();
+        String successMsg = "Thank you for returning the book";
+        assertThat(outContent.toString(), containsString(successMsg));
+    }
 }

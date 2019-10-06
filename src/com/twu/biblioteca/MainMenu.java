@@ -55,7 +55,10 @@ public class MainMenu {
     public void processReturnBook() {
         System.out.println("Please enter the title of book you would like to return:");
         String title = getUserInput();
-        this.bookList.returnBook(title);
+        boolean successful = this.bookList.returnBook(title);
+        if (successful) {
+            System.out.println("Thank you for returning the book");
+        }
     }
 
     public String getUserInput() {
