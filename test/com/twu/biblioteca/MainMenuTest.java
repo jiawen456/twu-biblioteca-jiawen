@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+import static java.lang.String.format;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
@@ -25,8 +26,16 @@ public class MainMenuTest {
     @Test
     public void shouldSeeListOfBooksWhenOptionSelected() {
         menu.processMenuInput("List of books");
-        String listOfBooksMsg = "List of Library Books";
-        assertThat(outContent.toString(), containsString(listOfBooksMsg));
+
+        String outputBook1 = format("%-32s%-24s%-4d%n", "1984", "George Orwell", 1949);
+        String outputBook2 = format("%-32s%-24s%-4d%n", "To Kill a Mockingbird", "Harper Lee", 1960);
+        String outputBook3 = format("%-32s%-24s%-4d%n", "Frankenstein", "Mary Shelly", 1818);
+        String outputBook4 = format("%-32s%-24s%-4d%n", "The Lord of the Rings", "J. R. R. Tolkien", 1954);
+
+        assertThat(outContent.toString(), containsString(outputBook1));
+        assertThat(outContent.toString(), containsString(outputBook2));
+        assertThat(outContent.toString(), containsString(outputBook3));
+        assertThat(outContent.toString(), containsString(outputBook4));
     }
 
     @Test
