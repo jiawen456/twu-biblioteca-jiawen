@@ -1,0 +1,69 @@
+Question 1: Who checked out the book 'The Hobbit’?
+
+SELECT member.name FROM checkout_item
+INNER JOIN book ON checkout_item.book_id = book.id
+INNER JOIN member ON checkout_item.member_id = member.id
+WHERE book.title = "The Hobbit";
+
+Anand Beck
+
+
+Question 2: How many people have not checked out anything?
+
+SELECT COUNT(member.id) FROM member
+LEFT JOIN checkout_item ON checkout_item.member_id = member.id
+WHERE checkout_item.book_id IS NULL and checkout_item.movie_id IS NULL;
+
+37
+
+
+Question 3: What books and movies aren't checked out?
+
+SELECT book.title FROM book
+LEFT JOIN checkout_item ON book.id = checkout_item.book_id 
+WHERE checkout_item.book_id is NULL
+UNION
+SELECT movie.title FROM movie
+LEFT JOIN checkout_item ON movie.id = checkout_item.movie_id 
+WHERE checkout_item.movie_id is NULL;
+
+1984
+Catcher in the Rye
+Crouching Tiger, Hidden Dragon
+Domain Driven Design
+Fellowship of the Ring
+Lawrence of Arabia
+Office Space
+Thin Red Line
+To Kill a Mockingbird
+Tom Sawyer
+
+
+Question 4: Add the book 'The Pragmatic Programmer', and add yourself as a member. 
+Check out 'The Pragmatic Programmer'. Use your query from question 1 to verify that you have checked it out. 
+Also, provide the SQL used to update the database.
+
+INSERT INTO book
+VALUES (11, "The Pragmatic Programmer");
+
+INSERT INTO member
+VALUES (43, "Jia Wen");
+
+INSERT INTO checkout_item (member_id, book_id)
+VALUES (43, 11);
+
+SELECT member.name FROM checkout_item
+INNER JOIN book ON checkout_item.book_id = book.id
+INNER JOIN member ON checkout_item.member_id = member.id
+WHERE book.title = "The Pragmatic Programmer";
+
+
+Question 5: Who has checked out more than 1 item? 
+
+SELECT member.name FROM member
+INNER JOIN checkout_item ON member.id = checkout_item.member_id
+GROUP BY checkout_item.member_id
+HAVING COUNT(member.id) > 1
+
+Anand Beck
+Frank Smith
