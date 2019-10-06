@@ -3,19 +3,19 @@ package com.twu.biblioteca;
 import java.util.ArrayList;
 
 public class BookList {
-    private ArrayList<String> bookList;
+    private ArrayList<Book> bookList;
 
     public BookList() {
-        ArrayList<String> bookList = new ArrayList<String>();
-        bookList.add("1984");
-        bookList.add("To Kill a Mockingbird");
-        bookList.add("Frankenstein");
-        bookList.add("The Lord of the Rings");
+        ArrayList<Book> bookList = new ArrayList<Book>();
+        bookList.add(new Book("1984", "George Orwell", 1949));
+        bookList.add(new Book("To Kill a Mockingbird", "Harper Lee", 1960));
+        bookList.add(new Book("Frankenstein", "Mary Shelly", 1818));
+        bookList.add(new Book("The Lord of the Rings", "J. R. R. Tolkien", 1954));
 
         this.bookList = bookList;
     }
 
-    public ArrayList<String> getBookList() {
+    public ArrayList<Book> getBookList() {
         return bookList;
     }
 

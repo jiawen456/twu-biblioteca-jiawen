@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static java.lang.String.format;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 
@@ -33,8 +34,15 @@ public class BibliotecaAppTest {
         FakeBookList bookList = new FakeBookList();
         app.displayBookList(bookList);
 
-        String output = "1984\nTo Kill a Mockingbird\nFrankenstein\nThe Lord of the Rings";
-        assertThat(outContent.toString(), containsString(output));
+        String outputBook1 = format("%-32s%-24s%-4d%n", "1984", "George Orwell", 1949);
+        String outputBook2 = format("%-32s%-24s%-4d%n", "To Kill a Mockingbird", "Harper Lee", 1960);
+        String outputBook3 = format("%-32s%-24s%-4d%n", "Frankenstein", "Mary Shelly", 1818);
+        String outputBook4 = format("%-32s%-24s%-4d%n", "The Lord of the Rings", "J. R. R. Tolkien", 1954);
+
+        assertThat(outContent.toString(), containsString(outputBook1));
+        assertThat(outContent.toString(), containsString(outputBook2));
+        assertThat(outContent.toString(), containsString(outputBook3));
+        assertThat(outContent.toString(), containsString(outputBook4));
     }
 
 }

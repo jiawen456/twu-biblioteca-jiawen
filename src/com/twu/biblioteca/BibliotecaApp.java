@@ -19,9 +19,10 @@ public class BibliotecaApp {
 
     public void displayBookList(BookList bookList) {
         System.out.println("List of Library Books");
-        ArrayList<String> books = bookList.getBookList();
-        for (String book : books) {
-            System.out.println(book);
+        System.out.format("%-32s%-24s%-24s%n", "Title", "Author", "Year Published");
+        ArrayList<Book> books = bookList.getBookList();
+        for (Book book : books) {
+            System.out.format("%-32s%-24s%-4d%n", book.getTitle(), book.getAuthor(), book.getYearPublished());
         }
 
     }
