@@ -95,4 +95,14 @@ public class MainMenuTest {
         String successMsg = "Thank you for returning the book";
         assertThat(outContent.toString(), containsString(successMsg));
     }
+
+    @Test
+    public void shouldDisplayUnsuccessfulMessageAfterUnsuccessfulReturn() {
+        String title = "1989";
+        InputStream in = new ByteArrayInputStream(title.getBytes());
+        System.setIn(in);
+        menu.processReturnBook();
+        String successMsg = "That is not a valid book to return.";
+        assertThat(outContent.toString(), containsString(successMsg));
+    }
 }

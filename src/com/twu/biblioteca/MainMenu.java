@@ -58,6 +58,8 @@ public class MainMenu {
         boolean successful = this.bookList.returnBook(title);
         if (successful) {
             System.out.println("Thank you for returning the book");
+        } else {
+            System.out.println("That is not a valid book to return.");
         }
     }
 
