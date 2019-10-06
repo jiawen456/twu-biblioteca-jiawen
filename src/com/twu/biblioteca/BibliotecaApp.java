@@ -31,8 +31,8 @@ public class BibliotecaApp {
     }
 
     public String getMenuInput() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Select an option from the menu");
+        Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 

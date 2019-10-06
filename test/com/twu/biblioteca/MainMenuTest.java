@@ -6,8 +6,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 public class MainMenuTest {
@@ -47,4 +46,11 @@ public class MainMenuTest {
         assertThat(isRunning, is(false));
     }
 
+    @Test
+    public void shouldNotDisplayBookAfterCheckoutOptionSelected() {
+        String title = "1984";
+        menu.bookList.checkoutBook(title);
+        menu.displayMainMenu();
+        assertThat(outContent.toString(), not(containsString(title)));
+    }
 }
