@@ -60,4 +60,11 @@ public class BibliotecaAppTest {
         assertThat(outContent.toString(), containsString(outputBook4));
     }
 
+    @Test
+    public void shouldBeNotifiedWhenInvalidOptionSelected() {
+        app.menuHandler("Invalid input");
+        String invalidMsg = "Please select a valid option!";
+        assertThat(outContent.toString(), containsString(invalidMsg));
+    }
+
 }

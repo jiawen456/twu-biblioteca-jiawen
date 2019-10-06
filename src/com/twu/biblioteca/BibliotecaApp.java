@@ -33,6 +33,8 @@ public class BibliotecaApp {
         if (input.equalsIgnoreCase("List of books")) {
             BookList bookList = new BookList();
             displayBookList(bookList);
+        } else {
+            System.out.println("Please select a valid option!");
         }
     }
 
