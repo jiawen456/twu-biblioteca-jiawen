@@ -46,4 +46,13 @@ public class BookListTest {
         assertThat(outContent.toString(), not(containsString(checkoutBook)));
         assertThat(outContent.toString(), containsString(notCheckoutBook));
     }
+
+    @Test
+    public void shouldDisplayIfIsReturned() {
+        bookList.checkoutBook("1984");
+        bookList.returnBook("1984");
+        bookList.displayBookList();
+        String returnedBook = format("%-32s%-24s%-4d%n", "1984", "George Orwell", 1949);
+        assertThat(outContent.toString(), containsString(returnedBook));
+    }
 }

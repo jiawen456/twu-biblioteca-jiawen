@@ -36,6 +36,17 @@ public class BookList {
         }
     }
 
+    public boolean returnBook(String title) {
+        Book selectedBook = findBook(title);
+
+        if(selectedBook != null && selectedBook.isCheckedOut()){
+            selectedBook.setCheckedOut(false);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public Book findBook(String title) {
         for(Book book : bookList){
             if (book.getTitle().equals(title)){

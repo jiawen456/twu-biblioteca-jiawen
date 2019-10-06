@@ -11,6 +11,7 @@ public class MainMenu {
         ArrayList<String> menuOptions = new ArrayList<String>();
         menuOptions.add("List of books");
         menuOptions.add("Checkout book");
+        menuOptions.add("Return book");
         menuOptions.add("Quit");
         this.menuOptions = menuOptions;
         this.bookList = new BookList();
@@ -29,6 +30,8 @@ public class MainMenu {
             this.bookList.displayBookList();
         } else if (input.equalsIgnoreCase("Checkout book")) {
             processCheckoutBook();
+        } else if (input.equalsIgnoreCase("Return book")) {
+            processReturnBook();
         } else if (input.equalsIgnoreCase("Quit")) {
             return false;
         } else {
@@ -47,6 +50,12 @@ public class MainMenu {
         } else {
             System.out.println("Sorry, that book is not available");
         }
+    }
+
+    public void processReturnBook() {
+        System.out.println("Please enter the title of book you would like to return:");
+        String title = getUserInput();
+        this.bookList.returnBook(title);
     }
 
     public String getUserInput() {

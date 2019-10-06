@@ -50,9 +50,9 @@ public class MainMenuTest {
 
     @Test
     public void shouldNotDisplayBookAfterSuccessfulCheckout() {
-        String title = "1984";
+        String title = "Frankenstein";
         menu.bookList.checkoutBook(title);
-        menu.displayMainMenu();
+        menu.processMenuInput("List of books");
         assertThat(outContent.toString(), not(containsString(title)));
     }
 
@@ -75,4 +75,14 @@ public class MainMenuTest {
         String successMsg = "Sorry, that book is not available";
         assertThat(outContent.toString(), containsString(successMsg));
     }
+
+    @Test
+    public void shouldDisplayBookAfterSuccessfulReturn() {
+        String title = "Frankenstein";
+        menu.bookList.checkoutBook(title);
+        menu.bookList.returnBook(title);
+        menu.processMenuInput("List of books");
+        assertThat(outContent.toString(), containsString(title));
+    }
+    
 }
