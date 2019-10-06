@@ -41,7 +41,10 @@ public class MainMenu {
     public void processCheckoutBook() {
         System.out.println("Please enter the title of book you would like to checkout:");
         String title = getUserInput();
-        this.bookList.checkoutBook(title);
+        boolean successful = this.bookList.checkoutBook(title);
+        if (successful) {
+            System.out.println("Thank you! Enjoy the book");
+        }
     }
 
     public String getUserInput() {

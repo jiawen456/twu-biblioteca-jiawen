@@ -3,7 +3,9 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -47,10 +49,20 @@ public class MainMenuTest {
     }
 
     @Test
-    public void shouldNotDisplayBookAfterCheckoutOptionSelected() {
+    public void shouldNotDisplayBookAfterSuccessfulCheckout() {
         String title = "1984";
         menu.bookList.checkoutBook(title);
         menu.displayMainMenu();
         assertThat(outContent.toString(), not(containsString(title)));
+    }
+
+    @Test
+    public void shouldDisplaySuccessMessageAfterSuccessfulCheckout() {
+        String title = "1984";
+        InputStream in = new ByteArrayInputStream(title.getBytes());
+        System.setIn(in);
+        menu.processCheckoutBook();
+        String successMsg = "Thank you! Enjoy the book";
+        assertThat(outContent.toString(), containsString(successMsg));
     }
 }
