@@ -15,6 +15,10 @@ public class BookList {
         this.bookList = books;
     }
 
+    public void setBookList(ArrayList<Book> bookList) {
+        this.bookList = bookList;
+    }
+
     public void displayBookList() {
         System.out.println("List of Library Books");
         System.out.format("%-32s%-24s%-24s%n", "Title", "Author", "Year Published");

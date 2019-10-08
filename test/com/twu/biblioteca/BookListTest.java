@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import static java.lang.String.format;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -19,7 +20,14 @@ public class BookListTest {
     @Before
     public void setUp() {
         System.setOut(new PrintStream(outContent));
+
+        ArrayList<Book> books = new ArrayList<Book>();
+        books.add(new Book("1984", "George Orwell", 1949));
+        books.add(new Book("To Kill a Mockingbird", "Harper Lee", 1960));
+        books.add(new Book("Frankenstein", "Mary Shelly", 1818));
+        books.add(new Book("The Lord of the Rings", "J. R. R. Tolkien", 1954));
         bookList = new BookList();
+        bookList.setBookList(books);
     }
 
     @Test

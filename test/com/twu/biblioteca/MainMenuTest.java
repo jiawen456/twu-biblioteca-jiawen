@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import static java.lang.String.format;
 import static org.hamcrest.CoreMatchers.*;
@@ -21,6 +22,13 @@ public class MainMenuTest {
     public void setUp() {
         System.setOut(new PrintStream(outContent));
         menu = new MainMenu();
+
+        ArrayList<Book> books = new ArrayList<Book>();
+        books.add(new Book("1984", "George Orwell", 1949));
+        books.add(new Book("To Kill a Mockingbird", "Harper Lee", 1960));
+        books.add(new Book("Frankenstein", "Mary Shelly", 1818));
+        books.add(new Book("The Lord of the Rings", "J. R. R. Tolkien", 1954));
+        menu.bookList.setBookList(books);
     }
 
     @Test
